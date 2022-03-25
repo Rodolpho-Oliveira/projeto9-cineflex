@@ -1,0 +1,25 @@
+.movie {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100vw;
+}
+
+.movie div {
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.movie div img {
+    width: 70%;
+}
+
+.movie-h2 {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-family: Roboto;
+}

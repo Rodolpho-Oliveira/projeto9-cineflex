@@ -1,0 +1,34 @@
+.time {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    justify-content: space-between;
+}
+
+.time h2{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-family: Roboto;
+}
+
+.time div {
+    margin-left: 24px;
+    height: 50%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.time div p {
+    font-size: 20px;
+}
+
+.time div div {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+}
