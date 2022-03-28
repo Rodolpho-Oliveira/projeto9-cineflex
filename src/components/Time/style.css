@@ -17,7 +17,7 @@
 .time div {
     margin-left: 24px;
     height: 50%;
-    width: 60%;
+    width: 70%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -30,7 +30,17 @@
 }
 
 .time div div {
-    width: 50%;
     display: flex;
     flex-direction: row;
+}
+
+.time-square {
+    width: 100%;
+    height: 100%;
+    background-color: #E8833A;
+    color: #ffffff;
+}
+
+.time-square p {
+    text-decoration: none;
 }

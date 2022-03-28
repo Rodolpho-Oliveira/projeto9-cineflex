@@ -20,7 +20,7 @@ function Time(){
             <h2>Selecione o horário</h2>
             {time.map(movieTime =>{ const {showtimes: showTimes} = movieTime 
                 return( <div><p>{movieTime.weekday} - {movieTime.date}</p> 
-                <div>{showTimes.map(hour =>  <Link to={`seats/${hour.id}`}> <p>{hour.name}</p> </Link>)}</div>
+                <div>{showTimes.map(hour =>  <Link to={`seats/${hour.id}`}> <div className="time-square"><p>{hour.name}</p> </div></Link>)}</div>
                 </div>)})}
         </div>
     )

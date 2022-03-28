@@ -1,14 +1,15 @@
 import axios from "axios"
-import { useState, useEffect } from "react"
-import { useParams, Link, useNavigate} from 'react-router-dom'
+import { useState, useEffect} from "react"
+import { useParams, useNavigate} from 'react-router-dom'
 import "./style.css"
 
 function Seat(){
   const {timeID} = useParams()
   const [seats, setSeats] = useState([])
+  const [seatsNum, setSeatsNum] = useState ([])
   const [seatID, setSeatID] = useState([])
-  const [data, setData] = useState({ Name: "", CPF: "" })
-  const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${timeID}/seats`)
+  const [data, setData] = useState({ Name: "", CPF: ""})
+  const navigate = useNavigate()
 
   function dataConfirmation(event) {
     event.preventDefault()
@@ -16,15 +17,20 @@ function Seat(){
         const ticketData = {
             ids: seatID,
             name: data.Name,
-            cpf: data.CPF
+            cpf: data.CPF,
+            seats: data.Seats
         }
-        axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", ticketData)
+        const promise = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", ticketData)
+        promise.then((response) => {
+          navigate("/success", { state: {ticketData, seatsNum}})
+      })
     }
     else{
       alert("Preencha corretamente!")
     }
   }
 
+    const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${timeID}/seats`)
     useEffect(() => {
     promise.then(seat =>{
              setSeats(seat.data.seats)
@@ -41,9 +47,14 @@ function Seat(){
                             let seatIds = seatID.filter(ids => ids !== seatNumber.id)
                             return seatIds
                         })
-                        : setSeatID([...seatID, seatNumber.id])
+                        : setSeatID([...seatID, seatNumber.id]) 
+                        seatsNum.includes(seatNumber.name) ?
+                          setSeatsNum(() => {
+                            let seatsNums = seatsNum.filter(name => name !== seatNumber.name)
+                            return seatsNums
+                        }) : setSeatsNum([...seatsNum, seatNumber.name])
                 }}>
-                <p>{seatNumber.name}</p></div> : <div className="seatUnavailable"><p>{seatNumber.name}</p></div>)}
+                <p>{seatNumber.name}</p></div> : <div onClick={() => alert("Este assento não está disponível")} className="seatUnavailable"><p>{seatNumber.name}</p></div>)}
         </div>
         <div className="seat-subtitle">
           <div><div className="seatSelected"></div><p>Selecioanado</p></div>
@@ -60,10 +71,9 @@ function Seat(){
             setData({ ...data, CPF: e.target.value })
           }} maxLength={14}/>
           <div className="seat-button">
-            <button type="submit">Reservar assento(s)</button>
+            <button  type="submit">Reservar assento(s)</button>
           </div>
         </form>
-        {console.log(data, seatID)}
       </div>
     )
 }

@@ -65,10 +65,16 @@
     margin-bottom: 40px;
 }
 
+
 .seat-subtitle div {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.seat-subtitle div p {
+    font-size: 13px;
+    font-family: Roboto;
 }
 
 .seats form input {
@@ -93,4 +99,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+form p {
+    font-size: 18px;
+    font-family: Roboto;
+}
+
+button {
+    margin-bottom: 20px;
+    color: #ffffff;
 }
