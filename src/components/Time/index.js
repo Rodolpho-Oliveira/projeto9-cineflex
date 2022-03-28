@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react"
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom'
 import axios from "axios"
 
 import "./style.css"
-
 
 function Time(){
     const {movieID} = useParams()
@@ -21,7 +20,7 @@ function Time(){
             <h2>Selecione o horário</h2>
             {time.map(movieTime =>{ const {showtimes: showTimes} = movieTime 
                 return( <div><p>{movieTime.weekday} - {movieTime.date}</p> 
-                <div>{showTimes.map(hour =>  <p>{hour.name}</p>)}</div>
+                <div>{showTimes.map(hour =>  <Link to={`seats/${hour.id}`}> <p>{hour.name}</p> </Link>)}</div>
                 </div>)})}
         </div>
     )
